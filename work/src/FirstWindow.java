@@ -18,6 +18,7 @@ public class FirstWindow extends Frames {
     public void createWindow() {
 
         final JPanel panel = new JPanel();
+
         panel.add(createButton());
         panel.add(createFramesButton());
         panel.add(createSomeActionButton());

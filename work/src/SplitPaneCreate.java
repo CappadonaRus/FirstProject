@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 
 public class SplitPaneCreate extends ActionsWindow {
 
+    private int rowNumber;
+    private int col;
 
 
-    public static JSplitPane createSplitPane(){
+    public static JSplitPane createSplitPane() {
         String[] nameColumns = {"id", "firstName", "lastName", "age", "salary"};
         //String[] a = new String[0];
         // String[] names = System.getProperties().stringPropertyNames().toArray(a);
@@ -38,14 +40,26 @@ public class SplitPaneCreate extends ActionsWindow {
 
         table.getModel().addTableModelListener(new TableModelListener() {
             @Override
-            public void tableChanged(TableModelEvent e) {
-                System.out.println(e.toString());
-               // ChangingTable changingTable = new ChangingTable();
-                //changingTable.setValueAt(infoTable, 1, nameColumns.length);
-                SaveToJson saveToJson = new SaveToJson();
-                saveToJson.giveDetails(infoTable, 1, nameColumns.length);
+            public void tableChanged(TableModelEvent tme) {
+                System.out.println(tme.getFirstRow() + " " + tme.getColumn() + " " + (table.getValueAt(tme.getFirstRow(), tme.getColumn())));
+               if (tme.getType() == TableModelEvent.UPDATE) {
+                   Object changedValue = table.getValueAt(tme.getFirstRow(), tme.getColumn());
+                    int row = tme.getFirstRow();
+                    int col = tme.getColumn();
+                   DefaultTableModel tableForSave = (DefaultTableModel) tme.getSource();
+                   String columnName = tableForSave.getColumnName(col);
+                   Object data = tableForSave.getValueAt(row, col);
+                   ChangeAndSaveToJson changeAndSaveToJson = new ChangeAndSaveToJson();
+                   changeAndSaveToJson.setValueAT(infoTable,changedValue, row,col);
 
-            }
+
+                   //ChangeAndSaveToJson changeAndSaveToJson = new ChangeAndSaveToJson();
+                   //changeAndSaveToJson.getValueAt(tme.getFirstRow(),tme.getColumn());
+
+               }
+
+
+                }
         });
 
         JPanel lowPanel = new JPanel(new GridBagLayout());
@@ -53,7 +67,8 @@ public class SplitPaneCreate extends ActionsWindow {
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SaveToJson saveToJson = new SaveToJson();
+                ChangeAndSaveToJson changeAndSaveToJson = new ChangeAndSaveToJson();
+                changeAndSaveToJson.convertToMapAndSaveToJson();
 
             }
         });

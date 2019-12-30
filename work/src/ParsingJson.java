@@ -6,15 +6,21 @@ import java.io.*;
 
 public class ParsingJson {
 
+
     public static int count;
     private static String firstName;
     private static String LastName;
     private static Long id;
     private static Long age;
     private static Long salary;
+    private static File file;
 
+    public static File getFile() {
+        return file;
+    }
 
     public void parsingFIle(File file) {
+        this.file = file;
         readingFile(file);
     }
 
@@ -38,6 +44,7 @@ public class ParsingJson {
         return age;
     }
 
+
     public static Long getSalary() {
         return salary;
     }
@@ -45,7 +52,7 @@ public class ParsingJson {
     public static void readingFile(File file) {
 
         try {
-           FileReader fileReader = new FileReader(file);
+            FileReader fileReader = new FileReader(file);
 
             JSONParser parser = new JSONParser();
             JSONObject obj = (JSONObject) parser.parse(fileReader);

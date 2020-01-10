@@ -1,25 +1,36 @@
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 public class NewUserWindow {
-    private String name;
-    private int age;
-    private int salary;
+    public Map<String, Object> clientsData = new HashMap<String, Object>();
 
-    public NewUserWindow(String name, int age, int salary) {
-        this.name = name;
-        this.age = age;
-        this.salary = salary;
+    @JsonAnyGetter
+    public Map<String, Object> getClientsMap() {
+        return clientsData;
     }
 
-    public String toString() {
-        return name;
+    @JsonAnySetter
+    public void setClientsMap(String name, Object value) {
+        clientsData.put(name, value);
     }
 
-    public String getAge() {
-        return String.valueOf(age);
 
+    public void printClientsData() {
+        Iterator<Map.Entry<String, Object>> iterator = clientsData.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Object> pair = iterator.next();
+            String key = pair.getKey();
+            Object value = pair.getValue().toString();
+            System.out.println(key + " : " + value);
+
+        }
+        JsonFileValues.convertClientsDetails(clientsData);
     }
-
-    public String getSalary() {
-        return String.valueOf(salary);
-    }
-
 }
+
+

@@ -1,8 +1,5 @@
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +13,7 @@ public class ActionsWindow extends Frames {
         droppingPanel.setBorder(new TitledBorder("Border"));
         droppingPanel.add(createComboTable());
         droppingPanel.add(createAddNewButton());
+
 
         final JPanel upperPanel = new JPanel(new BorderLayout(5, 5));
         upperPanel.add(droppingPanel, BorderLayout.NORTH);
@@ -37,8 +35,10 @@ public class ActionsWindow extends Frames {
     }
 
     public JComboBox createComboTable() {
-        String[] items = {"Элемент списка 1", "Элемент списка 2", "Элемент списка 3"};
-        final JComboBox comboButton = new JComboBox(items);
+        SplitPaneCreate splitPaneCreate = new SplitPaneCreate();
+        NewUserWindow newUserWindow = new NewUserWindow();
+        String[] items = splitPaneCreate.setColumnsInTable(newUserWindow.getClientsMap());
+        JComboBox comboButton = new JComboBox(items);
         comboButton.setEditable(false);
         comboButton.setAlignmentX(LEFT_ALIGNMENT);
 

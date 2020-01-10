@@ -48,8 +48,11 @@ public class FirstWindow extends Frames {
                 if (openFile == JFileChooser.APPROVE_OPTION) {
                     file = fileOpener.getSelectedFile();
                 }
-                ParsingJson parse = new ParsingJson();
-                parse.parsingFIle(file);
+                JackSonReadFIle jackSonReadFIle = new JackSonReadFIle();
+                jackSonReadFIle.createClientsData(file);
+                //jackSonReadFIle.readAndWriteFile(file);
+                //ParsingJson parse = new ParsingJson();
+                // parse.parsingFIle(file);
             }
         });
         return button1;
@@ -72,6 +75,7 @@ public class FirstWindow extends Frames {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
             }
         });
         return button3;

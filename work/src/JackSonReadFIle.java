@@ -26,6 +26,7 @@ public class JackSonReadFIle {
             NewUserWindow newUserWindow = objectMapper.readValue(file, NewUserWindow.class);
             newUserWindow.printClientsData();
 
+
             //можно вызвать data.values() для получения списка или data.size() для количества
         }
         catch(JsonProcessingException jpe){

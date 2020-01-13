@@ -23,7 +23,7 @@ public class SplitPaneCreate extends ActionsWindow {
         // String[] names = System.getProperties().stringPropertyNames().toArray(a);
         ParsingJson parsed = new ParsingJson();
         String[][] infoTable = new String[1][nameColumns.length];
-
+/*
         for (int i = 0; i < infoTable.length; i++) {
             infoTable[i][0] = String.valueOf(parsed.getId());
             infoTable[i][1] = parsed.getFirstName();
@@ -31,6 +31,8 @@ public class SplitPaneCreate extends ActionsWindow {
             infoTable[i][3] = String.valueOf(parsed.getAge());
             infoTable[i][4] = String.valueOf(parsed.getSalary());
         }
+
+ */
 
 
         DefaultTableModel InfoTableModel = new DefaultTableModel(infoTable, nameColumns);
@@ -55,7 +57,7 @@ public class SplitPaneCreate extends ActionsWindow {
                     String columnName = tableForSave.getColumnName(col);
                     Object data = tableForSave.getValueAt(row, col);
                     ChangeAndSaveToJson changeAndSaveToJson = new ChangeAndSaveToJson();
-                    changeAndSaveToJson.setValueAT(infoTable, changedValue, row, col);
+                   // changeAndSaveToJson.setValueAT(infoTable, changedValue, row, col);
 
 
                     //ChangeAndSaveToJson changeAndSaveToJson = new ChangeAndSaveToJson();
@@ -72,8 +74,8 @@ public class SplitPaneCreate extends ActionsWindow {
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ChangeAndSaveToJson changeAndSaveToJson = new ChangeAndSaveToJson();
-                changeAndSaveToJson.convertToMapAndSaveToJson();
+               // ChangeAndSaveToJson changeAndSaveToJson = new ChangeAndSaveToJson();
+                //changeAndSaveToJson.convertToMapAndSaveToJson();
 
             }
         });
@@ -95,7 +97,7 @@ public class SplitPaneCreate extends ActionsWindow {
         for(int i = 0; i < map.size(); i++) {
             while (iterator.hasNext()) {
                 Map.Entry<String, Object> pair = iterator.next();
-                String key = pair.getKey();
+                String key = pair.getKey().toString();
                 System.out.println(key);
                 columnsPane[i] = key;
             }

@@ -3,77 +3,56 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ParsingJson {
 
+    ArrayList<String> array = new ArrayList<>();
 
-    public static int count;
-    private static String firstName;
-    private static String LastName;
-    private static Long id;
-    private static Long age;
-    private static Long salary;
-    private static File file;
-
-    public static File getFile() {
-        return file;
-    }
-
-    public void parsingFIle(File file) {
-        this.file = file;
-        readingFile(file);
-    }
-
-    public static String getFirstName() {
-
-        return firstName;
-    }
-
-    public static String getLastName() {
-
-        return LastName;
-    }
-
-    public static Long getId() {
-
-        return id;
-    }
-
-    public static Long getAge() {
-
-        return age;
-    }
+    public String fio;
+    public String lastName;
+    public String firstName;
+    public String middleName;
+    public String birthDate;
+    public String card;
+    public String sessionType;
+    public String document;
+    public String type;
+    public String series;
+    public String number;
+    public String seriesNumber;
 
 
-    public static Long getSalary() {
-        return salary;
-    }
+    public void insertMapDetails(Map<String, Object> map) {
+        Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Object> pair = iterator.next();
+            Object value = String.valueOf(pair.getValue());
+            try {
 
-    public static void readingFile(File file) {
+                JSONParser parser = new JSONParser();
+                JSONObject obj = (JSONObject) parser.parse((String) value);
+                fio = (String) obj.get("fio");
+                lastName = (String) obj.get("lastName");
+                firstName = (String) obj.get("firstName");
+                middleName = (String) obj.get("middleName");
+                birthDate = (String) obj.get("birthDate");
+                card = (String) obj.get("card");
+                sessionType = (String) obj.get("sessionType");
+                document = (String) obj.get("document");
+                type = (String) obj.get("type");
+                series = (String) obj.get("series");
+                number = (String) obj.get("number");
+                seriesNumber = (String) obj.get("seriesNumber");
 
-        try {
-            FileReader fileReader = new FileReader(file);
+            } catch (ParseException e) {
+                e.printStackTrace();
 
-            JSONParser parser = new JSONParser();
-            JSONObject obj = (JSONObject) parser.parse(fileReader);
-            firstName = (String) obj.get("firstName");
-            count++;
-            LastName = (String) obj.get("lastName");
-            count++;
-            age = (Long) obj.get("age");
-            count++;
-            salary = (Long) obj.get("salary");
-            count++;
-            id = (Long) obj.get("id");
-            count++;
-            fileReader.close();
+            }
 
-
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
 
         }
-
-
     }
 }

@@ -3,6 +3,7 @@
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,11 +24,71 @@ public class JsonFileValues {
     public String birthDate;
     public String card;
     public String sessionType;
-    public String document;
-    public String type;
-    public String series;
-    public String number;
-    public String seriesNumber;
+    public CustomerDocument document = new CustomerDocument();
+
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
+
+    public String getSessionType() {
+        return sessionType;
+    }
+
+    public void setSessionType(String sessionType) {
+        this.sessionType = sessionType;
+    }
+
+    public CustomerDocument getDocument() {
+        return document;
+    }
+
+    public void setDocument(CustomerDocument document) {
+        this.document = document;
+    }
 
 /*
     public JsonFileValues(@JsonProperty("fio") String fio, @JsonProperty("lastName") String lastName,
@@ -53,19 +114,54 @@ public class JsonFileValues {
 
  */
 
+public class CustomerDocument {
+    public String type;
+    public String series;
+    public String number;
+    public String seriesNumber;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getSeriesNumber() {
+        return seriesNumber;
+    }
+
+    public void setSeriesNumber(String seriesNumber) {
+        this.seriesNumber = seriesNumber;
+    }
+}
+
 
     public void getValues() {
         System.out.println(firstName);
         System.out.println(lastName);
-        System.out.println(number);
 
     }
 
     public static void convertClientsDetails(Map map) {
 
-        //  String values ="{\"fio\" : \"ivan ivanov ivanovich\", \"lastName\" : \"ivanov\", \"middleName\" : \"yurievich\", " +
-        //         "\"birthDate\" : \"1950-01-01\", \"card\" : \"4274380077455568\", \"sessionType\" : \"0\", \"document\" : \"null\", " +
-        //         "\"type\" : \"21\" , \"series\" : \"34 25\", \"number\" : \"245824\", \"seriesNumber\" : \"3452245824\"}";
         ObjectMapper objectMapper = new ObjectMapper();
         Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -73,7 +169,7 @@ public class JsonFileValues {
            Object value = pair.getValue();
            //Reader reader = new StringReader((String) value);
             try {
-                JsonFileValues jsonFileValues = objectMapper.readValue((String) value, JsonFileValues.class);
+                JsonFileValues jsonFileValues = objectMapper.readValue(value.toString(), JsonFileValues.class);
                 jsonFileValues.getValues();
             } catch (IOException e) {
                 e.printStackTrace();

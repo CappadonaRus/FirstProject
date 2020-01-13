@@ -1,8 +1,14 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.*;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 public class JackSonReadFIle {
@@ -21,19 +27,15 @@ public class JackSonReadFIle {
     }
 */
 
-    public void createClientsData(File file)  {
+    public void createClientsData(File file) {
         try {
-            NewUserWindow newUserWindow = objectMapper.readValue(file, NewUserWindow.class);
-            newUserWindow.printClientsData();
+            String content = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+            JSONObject jsonObject = new JSONObject(content);
 
+            objectMapper.readValue(jsonObject.get("Иванов").toString(),JsonFileValues.class);
 
-            //можно вызвать data.values() для получения списка или data.size() для количества
-        }
-        catch(JsonProcessingException jpe){
+        } catch (IOException jpe) {
             jpe.printStackTrace();
-        }
-        catch(IOException ioe){
-            ioe.printStackTrace();
         }
     }
 }

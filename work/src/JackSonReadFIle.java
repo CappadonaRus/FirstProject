@@ -27,15 +27,16 @@ public class JackSonReadFIle {
     }
 */
 
-    public void createClientsData(File file) {
+    public JsonFileValues createClientsData(File file) {
         try {
             String content = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
             JSONObject jsonObject = new JSONObject(content);
 
-            objectMapper.readValue(jsonObject.get("Иванов").toString(),JsonFileValues.class);
+            return objectMapper.readValue(jsonObject.get("Иванов").toString(),JsonFileValues.class);
 
         } catch (IOException jpe) {
             jpe.printStackTrace();
+            return null;
         }
     }
 }

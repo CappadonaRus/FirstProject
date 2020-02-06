@@ -1,0 +1,47 @@
+﻿{
+  "КЛЮШКИН": {
+  "fio": "КЛЮШКИН ИВАН ПЕТРОВИЧ",
+  "lastName": "Клюшкин",
+  "firstName": "Иван",
+  "middleName": "Петрович",
+  "birthDate" : "1980-12-01",
+  "card" : "429010030394872",
+  "sessionType" : "1",
+  "document" : {
+    "type" : 21,
+    "series" : "62 22",
+    "number" : "2342334",
+    "seriesNumber": "6222234234"
+  }
+ },
+
+"ПРОВЕРКИНА": {
+    "fio": "ПРОВЕРКИНА ИРИНА ИВАНОВНА",
+  "lastName": "Проверкина",
+  "firstName": "Ирина",
+  "middleName": "Ивановна",
+  "birthDate" : "1950-01-01",
+  "sessionType" : "0",
+  "document" : {
+    "type" : 21,
+    "series" : "34 52",
+    "number" : "245824",
+    "seriesNumber": "3452245824"
+ }
+},
+"БЕРЕЗКО": {
+  "fio": "БЕРЕЗКО ТЕСТ ШЕСТОЙ",
+  "lastName": "БЕРЕЗКО",
+  "firstName": "ТЕСТ",
+  "middleName": "ШЕСТОЙ",
+  "birthDate" : "19.05.1988",
+  "card" : "4276380046353293",
+  "sessionType" : "1",
+  "document" : {
+    "type" : 21,
+    "series" : "44 05",
+    "number" : "644606",
+    "seriesNumber": "4405644606"  
+}
+}
+}

@@ -1,0 +1,49 @@
+{
+  "default" : "CAБУРОВ",
+  "operators" : {
+    "САБУРОВ": {
+      "selfkey": "58",
+      "confirmKey": "65",
+      "login": "ift-saburov",
+      "password": "q12345678",
+      "fullName": "Сабуров Вячеслав Евгеньевич",
+      "branch": "01797",
+      "lastName": "Сабуров",
+      "firstName": "Вячеслав",
+      "middleName": "Евгеньевич"
+    },
+    "ИМЯ006": {
+      "selfkey": "58",
+      "confirmKey": "58",
+      "login": "sbt-ift-bioadm",
+      "password": "1qaz2wsx",
+      "fullName": "Фамилия006 Имя006 Отчество006",
+      "branch": "0491",
+      "lastName": "Фамилия006",
+      "firstName": "Имя006",
+      "middleName": "Отчество006"
+    },
+    "ПСИ": {
+      "selfkey": "",
+      "confirmKey": "",
+      "login": "sbolPro_teh2",
+      "password": "Aa123456",
+      "fullName": "Шматова Наталия Александровна",
+      "branch": "0000",
+      "lastName": "Шматова",
+      "firstName": "Наталия",
+      "middleName": "Александровна"
+    },
+    "ЕРЕМЕЙ": {
+      "selfkey": "58",
+      "confirmKey": "58",
+      "login": "sbt-ift-bio3",
+      "password": "1qaz2wsx",
+      "fullName": "Биометричейскийавто Еремей Эдвардович",
+      "branch": "0491",
+      "lastName": "Биометрическийавто",
+      "firstName": "Еремей",
+      "middleName": "Эдвардович"
+    }
+    }
+  }

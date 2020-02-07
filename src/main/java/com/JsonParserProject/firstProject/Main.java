@@ -1,10 +1,8 @@
-package com.bro.firstProject;
-
-import java.io.IOException;
+package com.JsonParserProject.firstProject;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         JackSonReadFIle jackSonReadFIle = new JackSonReadFIle();
         jackSonReadFIle.createClientsDataForRight();

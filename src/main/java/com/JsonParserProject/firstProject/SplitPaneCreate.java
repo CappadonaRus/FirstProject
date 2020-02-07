@@ -1,4 +1,4 @@
-package com.bro.firstProject;
+package com.JsonParserProject.firstProject;
 
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;

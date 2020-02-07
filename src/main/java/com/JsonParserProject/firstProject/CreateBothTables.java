@@ -1,4 +1,4 @@
-package com.bro.firstProject;
+package com.JsonParserProject.firstProject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,7 @@ public class CreateBothTables extends JFrame {
     public void createFrame() {
         JPanelForLeftTable jPanelForLeftTable = new JPanelForLeftTable();
         JPanelFromRightTable jPanelFromRightTable = new JPanelFromRightTable();
-        JFrame mainFrame = new JFrame("For my Braza");
+        JFrame mainFrame = new JFrame("Set Name");
 
 
         mainFrame.getContentPane().add(jPanelFromRightTable.createPanelFromRightSide(), BorderLayout.EAST);

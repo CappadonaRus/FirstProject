@@ -1,4 +1,4 @@
-package com.bro.firstProject;
+package com.JsonParserProject.firstProject;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -101,10 +101,6 @@ public class JsonPojoForRightTable {
                 try {
                     JsonPojoForRightTable jsonPojoForRightTable1 = objectMapper.readValue(objectMapper.writeValueAsString(pair.getValue()), JsonPojoForRightTable.class);
                     rightTableTemp.createClientsData(jsonPojoForRightTable1);
-
-                    //SplitPaneCreate.createColumnsNames();
-
-
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }

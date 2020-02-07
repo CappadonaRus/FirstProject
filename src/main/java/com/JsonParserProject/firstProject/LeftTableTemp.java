@@ -1,4 +1,4 @@
-package com.bro.firstProject;
+package com.JsonParserProject.firstProject;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -26,7 +26,6 @@ public class LeftTableTemp extends JTable implements SplitPaneCreate {
         clientsDataColumns.add("birthDate");
         clientsDataColumns.add("card");
         clientsDataColumns.add("sessionType");
-        //clientsDataColumns.add("document");
         clientsDataColumns.add("type");
         clientsDataColumns.add("series");
         clientsDataColumns.add("number");

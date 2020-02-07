@@ -1,4 +1,4 @@
-package com.bro.firstProject;
+package com.JsonParserProject.firstProject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,10 +21,6 @@ public class RightTableJackSonFirstParse {
     }
 
     public void getDetailsRight() {
-        Iterator<Map.Entry<Object, Object>> iterator = dataRightTable.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<Object, Object> pair = iterator.next();
-        }
         convertClientsDetails("operators", createFirstMapFromJson.getClientsMap());
     }
 

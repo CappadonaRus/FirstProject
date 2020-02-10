@@ -25,19 +25,5 @@ public class CreateFirstMapFromJson {
 }
 
 
-//колхозный вариант представления как распарсена мапа метода convertParsedMap
-        /*
-        ArrayList<String> clientsName = new ArrayList<>();
-        Iterator<Map.Entry<String, Object>> iterator = clientsData.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Object> pair = iterator.next();
-            String key = pair.getKey();
-            Object value = pair.getValue();
-            clientsName.add(pair.getKey());
-            // System.out.println(key + " : " + value);
-            }
-            /представление как распарсена мапа метода convertParsedMap
-         */
-
 
 

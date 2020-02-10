@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
-public class RightTableJackSonFirstParse {
+public class RightTableJackSonParse {
     CreateFirstMapFromJson createFirstMapFromJson;
 
     Map<Object, Object> dataRightTable = new LinkedHashMap<>();
@@ -17,10 +17,6 @@ public class RightTableJackSonFirstParse {
     public void insertDetailsForRightTable(CreateFirstMapFromJson obj, Object obj2) {
         createFirstMapFromJson = obj;
         dataRightTable = Collections.synchronizedMap((Map) obj2);
-        getDetailsRight();
-    }
-
-    public void getDetailsRight() {
         convertClientsDetails("operators", createFirstMapFromJson.getClientsMap());
     }
 
@@ -38,7 +34,6 @@ public class RightTableJackSonFirstParse {
                     e.printStackTrace();
                 }
             }
-
         }
     }
 }

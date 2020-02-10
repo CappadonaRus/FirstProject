@@ -43,7 +43,6 @@ public class CustomTableModel extends AbstractTableModel {
     public void updateTable(ArrayList<String> arrayList) {
         rowsData.clear();
         rowsData.addAll(arrayList);
-        fireTableDataChanged();
     }
 
 }

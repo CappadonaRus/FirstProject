@@ -3,8 +3,8 @@ package com.JsonParserProject.firstProject;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class LeftTableTemp extends JTable implements SplitPaneCreate {
-
+public class LeftTable extends JTable implements SplitPaneCreatable {
+    static ArrayList<Object> clientsDataColumns = new ArrayList<>();
     static JTable table;
 
     public JTable createJTable() {
@@ -12,9 +12,6 @@ public class LeftTableTemp extends JTable implements SplitPaneCreate {
         table = new JTable(customTableModel);
         return table;
     }
-
-
-    static ArrayList<Object> clientsDataColumns = new ArrayList<>();
 
     @Override
     public ArrayList<Object> createColumnsNames() {

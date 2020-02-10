@@ -3,7 +3,7 @@ package com.JsonParserProject.firstProject;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class RightTableTemp extends JTable implements SplitPaneCreate {
+public class RightTable extends JTable implements SplitPaneCreatable {
     static ArrayList<Object> clientsDataColumnsLeft = new ArrayList<Object>();
     static JTable table;
 

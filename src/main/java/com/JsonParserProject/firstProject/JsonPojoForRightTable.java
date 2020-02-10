@@ -8,15 +8,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class JsonPojoForRightTable {
-    String selfkey;
-    String confirmKey;
-    String login;
-    String password;
-    String fullName;
-    String branch;
-    String lastName;
-    String firstName;
-    String middleName;
+    private String selfkey;
+    private String confirmKey;
+    private String login;
+    private String password;
+    private String fullName;
+    private String branch;
+    private String lastName;
+    private String firstName;
+    private String middleName;
 
     public String getSelfkey() {
         return selfkey;
@@ -91,20 +91,4 @@ public class JsonPojoForRightTable {
     }
 
 
-    public void convertClientsDetails(String value, Map map) {
-        RightTableTemp rightTableTemp = new RightTableTemp();
-        ObjectMapper objectMapper = new ObjectMapper();
-        Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Object> pair = iterator.next();
-            if (pair.getKey().contains(value)) {
-                try {
-                    JsonPojoForRightTable jsonPojoForRightTable1 = objectMapper.readValue(objectMapper.writeValueAsString(pair.getValue()), JsonPojoForRightTable.class);
-                    rightTableTemp.createClientsData(jsonPojoForRightTable1);
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 }

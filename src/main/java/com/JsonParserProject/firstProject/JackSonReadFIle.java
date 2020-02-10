@@ -17,17 +17,6 @@ public class JackSonReadFIle {
             ioe.printStackTrace();
         }
     }
-
-    public void createClientsDataForRight() {
-
-        PathJsonFilesRead pathJsonFilesRead = new PathJsonFilesRead();
-        RightTableJackSonFirstParse rightTableJackSonFirstParse = new RightTableJackSonFirstParse();
-
-        try {
-            CreateFirstMapFromJson createFirstMapFromJson2 = objectMapper.readValue(pathJsonFilesRead.readFileFromRightTable(), CreateFirstMapFromJson.class);
-            rightTableJackSonFirstParse.insertDetailsForRightTable(createFirstMapFromJson2, createFirstMapFromJson2.getClientsMap());
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
 }
+
+

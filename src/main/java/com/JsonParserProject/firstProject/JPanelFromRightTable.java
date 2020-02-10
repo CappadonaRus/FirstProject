@@ -1,5 +1,8 @@
 package com.JsonParserProject.firstProject;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -7,29 +10,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class JPanelFromRightTable extends JTable {
+public class JPanelFromRightTable extends JTable implements JPanelCreatable {
     static ArrayList<String> clientsNamesForTable = new ArrayList<>();
-    static CreateFirstMapFromJson RightParsedClientsObj;
+    static CreateFirstMapFromJson rightParsedClientsObj;
     static Map<String, Object> mapForClientsData = new HashMap<>();
 
-    public JPanel createPanelFromRightSide() {
-        RightTableTemp rightTableTemp = new RightTableTemp();
+    @Override
+    public JPanel createUpperPane() {
+        RightTable rightTable = new RightTable();
         JPanel RightUpperPanel = new JPanel(new BorderLayout(5, 5));
-        RightUpperPanel.add(RightCreateUpperComboPanel(), BorderLayout.NORTH);
-        RightUpperPanel.add(rightTableTemp.createSplitPane(rightTableTemp.createJTable()), BorderLayout.CENTER);
+        RightUpperPanel.add(CreateUpperComboPanel(), BorderLayout.NORTH);
+        RightUpperPanel.add(rightTable.createSplitPane(rightTable.createJTable()), BorderLayout.CENTER);
         RightUpperPanel.add(createButtonsGroup(), BorderLayout.EAST);
         return RightUpperPanel;
     }
 
-    public JPanel RightCreateUpperComboPanel() {
+    public JPanel CreateUpperComboPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.add(createDroppingButtonsPanelForRight());
+        panel.add(createDroppingButtonsPanel());
         return panel;
     }
 
-
-    public JPanel createDroppingButtonsPanelForRight() {
+    @Override
+    public JPanel createDroppingButtonsPanel() {
         JPanel droppingPanel = new JPanel();
         droppingPanel.setBorder(new TitledBorder("Border"));
         droppingPanel.add(createComboTableForRight());
@@ -37,27 +41,31 @@ public class JPanelFromRightTable extends JTable {
         return droppingPanel;
     }
 
-    public JButton createAddNewButton() {
-        final JButton button2 = new JButton("Add new Button");
-        button2.setAlignmentX(RIGHT_ALIGNMENT);
-        return button2;
-    }
-
     public void insertClientsNameForRightTable(CreateFirstMapFromJson obj, Map map) {
-        RightParsedClientsObj = obj;
+        rightParsedClientsObj = obj;
         mapForClientsData = Collections.synchronizedMap(obj.getClientsMap());
         Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, Object> pair = iterator.next();
             clientsNamesForTable.add(pair.getKey());
         }
-
-
     }
 
     public void convertMapToData(String value) {
-        JsonPojoForRightTable jsonPojoForRightTable = new JsonPojoForRightTable();
-        jsonPojoForRightTable.convertClientsDetails(value, RightParsedClientsObj.getClientsMap());
+        RightTable rightTable = new RightTable();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Iterator<Map.Entry<String, Object>> iterator = rightParsedClientsObj.getClientsMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Object> pair = iterator.next();
+            if (pair.getKey().contains(value)) {
+                try {
+                    JsonPojoForRightTable jsonPojoForRightTable1 = objectMapper.readValue(objectMapper.writeValueAsString(pair.getValue()), JsonPojoForRightTable.class);
+                    rightTable.createClientsData(jsonPojoForRightTable1);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public JPanel createButtonsGroup() {

@@ -1,9 +1,11 @@
 package com.JsonParserProject.firstProject;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,28 +13,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 
-public class JPanelForLeftTable extends JTable {
+public class JPanelForLeftTable extends JTable implements JPanelCreatable {
     static ArrayList<String> clientsNamesForTable = new ArrayList<String>();
     static CreateFirstMapFromJson parsedClientsObj;
-
-
-    public JPanel createUpperPaneToLeftSide() {
-        LeftTableTemp leftTableTemp = new LeftTableTemp();
-
-        JPanel upperPanel = new JPanel(new BorderLayout(5, 5));
-        upperPanel.add(createUpperComboPanel(), BorderLayout.NORTH);
-        upperPanel.add(leftTableTemp.createSplitPane(leftTableTemp.createJTable()), BorderLayout.CENTER);
-
-        return upperPanel;
-    }
-
-    public JPanel createUpperComboPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.add(createDroppingButtonsPanel());
-
-        return panel;
-    }
 
     public JPanel createDroppingButtonsPanel() {
         JPanel droppingPanel = new JPanel();
@@ -43,7 +26,6 @@ public class JPanelForLeftTable extends JTable {
 
         return droppingPanel;
     }
-
 
     public JComboBox createComboTableForLeft() {
 
@@ -67,8 +49,20 @@ public class JPanelForLeftTable extends JTable {
     }
 
     public void convertMapToData(String value) {
-        JsonFileToPojoValues jsonFileToPojoValues = new JsonFileToPojoValues();
-        jsonFileToPojoValues.convertClientsDetails(value, parsedClientsObj.getClientsMap());
+        LeftTable leftTable = new LeftTable();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Iterator<Map.Entry<String, Object>> iterator = parsedClientsObj.getClientsMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Object> pair = iterator.next();
+            if (pair.getKey().contains(value)) {
+                try {
+                    JsonFileToPojoValues jsonFileToPojoValues = objectMapper.readValue(objectMapper.writeValueAsString(pair.getValue()), JsonFileToPojoValues.class);
+                    leftTable.createClientsData(jsonFileToPojoValues);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public void insertClientsNameForTable(CreateFirstMapFromJson obj, Map map) {
@@ -79,9 +73,6 @@ public class JPanelForLeftTable extends JTable {
             Map.Entry<String, Object> pair = iterator.next();
             clientsNamesForTable.add(pair.getKey());
         }
-
-
     }
-
 }
 

@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public interface SplitPaneCreate {
+public interface SplitPaneCreatable {
 
 
     default ListModel init() {
@@ -27,7 +27,6 @@ public interface SplitPaneCreate {
     }
 
      ArrayList<Object> createColumnsNames();
-
 
     default JSplitPane createSplitPane(JTable table) {
         JScrollPane tableScroll = new JScrollPane(table);

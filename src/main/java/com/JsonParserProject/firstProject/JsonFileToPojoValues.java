@@ -1,11 +1,5 @@
 package com.JsonParserProject.firstProject;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.Iterator;
-import java.util.Map;
-
 public class JsonFileToPojoValues {
 
     private String fio;
@@ -120,28 +114,6 @@ public class JsonFileToPojoValues {
 
         public void setSeriesNumber(String seriesNumber) {
             this.seriesNumber = seriesNumber;
-        }
-    }
-
-    //добавить в метод String для установки значения по выборке и парсинга
-    public void convertClientsDetails(String value, Map map) {
-        LeftTableTemp leftTableTemp = new LeftTableTemp();
-        ObjectMapper objectMapper = new ObjectMapper();
-        Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Object> pair = iterator.next();
-            if (pair.getKey().contains(value)) {
-                try {
-                    JsonFileToPojoValues jsonFileToPojoValues = objectMapper.readValue(objectMapper.writeValueAsString(pair.getValue()), JsonFileToPojoValues.class);
-                    leftTableTemp.createClientsData(jsonFileToPojoValues);
-
-                    //SplitPaneCreate.createColumnsNames();
-
-
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

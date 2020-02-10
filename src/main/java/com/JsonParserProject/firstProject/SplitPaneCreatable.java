@@ -10,23 +10,7 @@ import java.util.*;
 
 public interface SplitPaneCreatable {
 
-
-    default ListModel init() {
-
-        return new AbstractListModel() {
-           Object headers[] = createColumnsNames().toArray();
-
-           public int getSize() {
-               return headers.length;
-           }
-
-           public Object getElementAt(int index) {
-               return headers[index];
-           }
-       };
-    }
-
-     ArrayList<Object> createColumnsNames();
+    ArrayList<Object> createColumnsNames();
 
     default JSplitPane createSplitPane(JTable table) {
         JScrollPane tableScroll = new JScrollPane(table);
@@ -46,7 +30,10 @@ public interface SplitPaneCreatable {
 
             }
         });
+        return new JSplitPane(JSplitPane.VERTICAL_SPLIT, tableScroll, new JScrollPane(createLowPanel()));
+    }
 
+    default JPanel createLowPanel() {
         JPanel lowPanel = new JPanel();
         final JButton buttonStart = new JButton("Start");
         buttonStart.addActionListener(new ActionListener() {
@@ -56,7 +43,22 @@ public interface SplitPaneCreatable {
         });
         lowPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 3, 3));
         lowPanel.add(buttonStart, BorderLayout.PAGE_END);
-        return new JSplitPane(JSplitPane.VERTICAL_SPLIT, tableScroll, new JScrollPane(lowPanel));
+        return lowPanel;
+    }
+
+    default ListModel init() {
+
+        return new AbstractListModel() {
+            Object headers[] = createColumnsNames().toArray();
+
+            public int getSize() {
+                return headers.length;
+            }
+
+            public Object getElementAt(int index) {
+                return headers[index];
+            }
+        };
     }
 
 }

@@ -6,10 +6,8 @@ import java.io.IOException;
 
 public class CreateClientsDataForRightTable implements Runnable {
 
-    ObjectMapper objectMapper = new ObjectMapper();
-
     public void createClientsDataForRight() {
-
+        ObjectMapper objectMapper = new ObjectMapper();
         PathJsonFilesRead pathJsonFilesRead = new PathJsonFilesRead();
         RightTableJackSonParse rightTableJackSonParse = new RightTableJackSonParse();
 

@@ -2,21 +2,19 @@ package com.JsonParserProject.firstProject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 public class RightTableJackSonParse {
-    CreateFirstMapFromJson createFirstMapFromJson;
+    private CreateFirstMapFromJson createFirstMapFromJson;
 
-    Map<Object, Object> dataRightTable = new LinkedHashMap<>();
+    public void setCreateFirstMapFromJson(CreateFirstMapFromJson createFirstMapFromJson) {
+        this.createFirstMapFromJson = createFirstMapFromJson;
+    }
 
     public void insertDetailsForRightTable(CreateFirstMapFromJson obj, Object obj2) {
-        createFirstMapFromJson = obj;
-        dataRightTable = Collections.synchronizedMap((Map) obj2);
+        setCreateFirstMapFromJson(obj);
         convertClientsDetails("operators", createFirstMapFromJson.getClientsMap());
     }
 

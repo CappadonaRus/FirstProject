@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.*;
 
 public class CreateFirstMapFromJson {
-    public LinkedHashMap<String, Object> clientsData = new LinkedHashMap<>();
+    private LinkedHashMap<String, Object> clientsData = new LinkedHashMap<>();
 
     @JsonAnyGetter
     public Map<String, Object> getClientsMap() {

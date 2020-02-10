@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class LeftTable extends JTable implements SplitPaneCreatable {
-    static ArrayList<Object> clientsDataColumns = new ArrayList<>();
-    static JTable table;
+   private static ArrayList<Object> clientsDataColumns = new ArrayList<>();
+   private static JTable table;
 
     public JTable createJTable() {
         CustomTableModel customTableModel = new CustomTableModel("fields");

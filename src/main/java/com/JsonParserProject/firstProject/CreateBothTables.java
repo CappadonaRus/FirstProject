@@ -9,7 +9,6 @@ public class CreateBothTables extends JFrame implements Runnable {
         JPanelFromRightTable jPanelFromRightTable = new JPanelFromRightTable();
         JFrame mainFrame = new JFrame("Set Name");
 
-
         mainFrame.getContentPane().add(jPanelFromRightTable.createUpperPane(), BorderLayout.EAST);
         mainFrame.getContentPane().add(jPanelForLeftTable.createUpperPane(), BorderLayout.WEST);
         mainFrame.pack();

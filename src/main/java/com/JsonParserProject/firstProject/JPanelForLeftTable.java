@@ -42,11 +42,6 @@ public class JPanelForLeftTable extends JTable implements JPanelCreatable {
         return comboButton;
     }
 
-    public JButton createAddNewButton() {
-        final JButton button2 = new JButton("Add new Button");
-        button2.setAlignmentX(RIGHT_ALIGNMENT);
-        return button2;
-    }
 
     public void convertMapToData(String value) {
         LeftTable leftTable = new LeftTable();

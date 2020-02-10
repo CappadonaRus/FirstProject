@@ -23,7 +23,7 @@ public interface JPanelCreatable {
         return panel;
     }
 
-     JPanel createDroppingButtonsPanel();
+    JPanel createDroppingButtonsPanel();
 
 
     default JButton createAddNewButton() {

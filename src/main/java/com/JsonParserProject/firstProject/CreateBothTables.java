@@ -7,10 +7,12 @@ public class CreateBothTables extends JFrame implements Runnable {
     public void createFrame() {
         JPanelForLeftTable jPanelForLeftTable = new JPanelForLeftTable();
         JPanelFromRightTable jPanelFromRightTable = new JPanelFromRightTable();
+        JPanelForLowerTable jPanelForLowerTable = new JPanelForLowerTable();
         JFrame mainFrame = new JFrame("Set Name");
 
         mainFrame.getContentPane().add(jPanelFromRightTable.createUpperPane(), BorderLayout.EAST);
         mainFrame.getContentPane().add(jPanelForLeftTable.createUpperPane(), BorderLayout.WEST);
+        mainFrame.getContentPane().add(jPanelForLowerTable.createUpperPane(), BorderLayout.CENTER);
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setLocationByPlatform(true);

@@ -14,5 +14,8 @@ public class PathJsonFilesRead {
         return new File(classLoader.getResource("secondTableJson.json").getFile());
     }
 
-
+    public File readFileFromLowerTable() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        return new File(classLoader.getResource("thirdTableJson.json").getFile());
+    }
 }

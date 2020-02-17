@@ -1,4 +1,7 @@
-import com.JsonParserProject.firstProject.*;
+import com.JsonParserProject.firstProject.Core.ClientsDatForRightJPanel;
+import com.JsonParserProject.firstProject.Core.ClientsDataForCenterJPanel;
+import com.JsonParserProject.firstProject.Core.LeftJPanelJackSonReadFile;
+import com.JsonParserProject.firstProject.Panels.CreateBothTables;
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.edt.GuiQuery;
@@ -55,7 +58,7 @@ public class AbstractFrameTest extends AssertJSwingTestCaseTemplate {
         });
         this.frame = new FrameFixture(this.robot(), createBothTables);
         this.frame.show();
-        this.frame.resizeTo(new Dimension(600, 600));
+        this.frame.resizeTo(new Dimension(1200, 600));
         onSetUp();
     }
 

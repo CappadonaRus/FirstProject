@@ -1,6 +1,11 @@
 package com.JsonParserProject.firstProject;
 
 
+import com.JsonParserProject.firstProject.Core.ClientsDatForRightJPanel;
+import com.JsonParserProject.firstProject.Core.ClientsDataForCenterJPanel;
+import com.JsonParserProject.firstProject.Core.LeftJPanelJackSonReadFile;
+import com.JsonParserProject.firstProject.Panels.CreateBothTables;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         LeftJPanelJackSonReadFile leftJPanelJackSonReadFIle = new LeftJPanelJackSonReadFile();

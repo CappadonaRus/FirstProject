@@ -8,6 +8,7 @@ public class CustomTableModel extends AbstractTableModel {
     private ArrayList<String> rowsData = new ArrayList<String>();
 
 
+
     public CustomTableModel(String colName) {
         columnNames.add(colName);
     }

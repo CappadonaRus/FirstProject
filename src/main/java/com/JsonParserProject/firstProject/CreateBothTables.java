@@ -3,27 +3,29 @@ package com.JsonParserProject.firstProject;
 import javax.swing.*;
 import java.awt.*;
 
-public class CreateBothTables extends JFrame implements Runnable {
-    public void createFrame() {
-        JPanelForLeftTable jPanelForLeftTable = new JPanelForLeftTable();
-        JPanelFromRightTable jPanelFromRightTable = new JPanelFromRightTable();
-        JPanelForLowerTable jPanelForLowerTable = new JPanelForLowerTable();
-        JFrame mainFrame = new JFrame("Set Name");
+public class CreateBothTables extends JFrame {
 
-        mainFrame.getContentPane().add(jPanelFromRightTable.createUpperPane(), BorderLayout.EAST);
-        mainFrame.getContentPane().add(jPanelForLeftTable.createUpperPane(), BorderLayout.WEST);
-        mainFrame.getContentPane().add(jPanelForLowerTable.createUpperPane(), BorderLayout.CENTER);
-        mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
-        mainFrame.setLocationByPlatform(true);
-        mainFrame.setMinimumSize(mainFrame.getSize());
-        mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        mainFrame.setVisible(true);
-    }
-
-    @Override
-    public void run() {
+    public CreateBothTables(){
+        setName("MainFrame");
         createFrame();
     }
+
+
+    public void createFrame() {
+        LeftJPanel leftJPanel = new LeftJPanel();
+        RightJPanel rightJPanel = new RightJPanel();
+        CenterJPanel centerJPanel = new CenterJPanel();
+
+        getContentPane().add(rightJPanel.createUpperPane(), BorderLayout.EAST);
+        getContentPane().add(leftJPanel.createUpperPane(), BorderLayout.WEST);
+        getContentPane().add(centerJPanel.createUpperPane(), BorderLayout.CENTER);
+        pack();
+        setLocationRelativeTo(null);
+        setLocationByPlatform(true);
+        setMinimumSize(getSize());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
+
+    }
+
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class RightTable extends JTable implements SplitPaneCreatable {
     private static ArrayList<Object> clientsDataColumnsLeft = new ArrayList<Object>();
     private static JTable table;
+    static Object giveObject;
 
     public JTable createJTable() {
         CustomTableModel customTableModel = new CustomTableModel("fields");
@@ -31,17 +32,20 @@ public class RightTable extends JTable implements SplitPaneCreatable {
     }
 
 
-    public void createClientsData(JsonPojoForRightTable jsonPojoForRightTable) {
+    public void createClientsData(PoJoFromRightTable poJoFromRightTable) {
+        giveObject = poJoFromRightTable;
+
+
         ArrayList<String> clientsData = new ArrayList<>();
-        clientsData.add(jsonPojoForRightTable.getSelfkey());
-        clientsData.add(jsonPojoForRightTable.getConfirmKey());
-        clientsData.add(jsonPojoForRightTable.getLogin());
-        clientsData.add(jsonPojoForRightTable.getPassword());
-        clientsData.add(jsonPojoForRightTable.getFullName());
-        clientsData.add(jsonPojoForRightTable.getBranch());
-        clientsData.add(jsonPojoForRightTable.getLastName());
-        clientsData.add(jsonPojoForRightTable.getFirstName());
-        clientsData.add(jsonPojoForRightTable.getMiddleName());
+        clientsData.add(poJoFromRightTable.getSelfkey());
+        clientsData.add(poJoFromRightTable.getConfirmKey());
+        clientsData.add(poJoFromRightTable.getLogin());
+        clientsData.add(poJoFromRightTable.getPassword());
+        clientsData.add(poJoFromRightTable.getFullName());
+        clientsData.add(poJoFromRightTable.getBranch());
+        clientsData.add(poJoFromRightTable.getLastName());
+        clientsData.add(poJoFromRightTable.getFirstName());
+        clientsData.add(poJoFromRightTable.getMiddleName());
         CustomTableModel customTableModel = new CustomTableModel("fields");
         customTableModel.updateTable(clientsData);
         table.setModel(customTableModel);

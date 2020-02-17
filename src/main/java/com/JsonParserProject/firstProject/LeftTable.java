@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class LeftTable extends JTable implements SplitPaneCreatable {
-   private static ArrayList<Object> clientsDataColumns = new ArrayList<>();
-   private static JTable table;
+    private static ArrayList<Object> clientsDataColumns = new ArrayList<>();
+    private static JTable table;
+    static Object giveObject;
 
     public JTable createJTable() {
         CustomTableModel customTableModel = new CustomTableModel("fields");
@@ -32,19 +33,21 @@ public class LeftTable extends JTable implements SplitPaneCreatable {
     }
 
 
-    public void createClientsData(JsonFileToPojoValues jsonFileToPojoValues) {
+    public void createClientsData(PoJoFromLeftTable poJoFromLeftTable) {
+        giveObject = poJoFromLeftTable;
+
         ArrayList<String> clientsData = new ArrayList<>();
-        clientsData.add(jsonFileToPojoValues.getFio());
-        clientsData.add(jsonFileToPojoValues.getLastName());
-        clientsData.add(jsonFileToPojoValues.getFirstName());
-        clientsData.add(jsonFileToPojoValues.getMiddleName());
-        clientsData.add(jsonFileToPojoValues.getBirthDate());
-        clientsData.add(jsonFileToPojoValues.getCard());
-        clientsData.add(jsonFileToPojoValues.getSessionType());
-        clientsData.add(jsonFileToPojoValues.document.getType());
-        clientsData.add(jsonFileToPojoValues.document.getSeries());
-        clientsData.add(jsonFileToPojoValues.document.getNumber());
-        clientsData.add(jsonFileToPojoValues.document.getSeriesNumber());
+        clientsData.add(poJoFromLeftTable.getFio());
+        clientsData.add(poJoFromLeftTable.getLastName());
+        clientsData.add(poJoFromLeftTable.getFirstName());
+        clientsData.add(poJoFromLeftTable.getMiddleName());
+        clientsData.add(poJoFromLeftTable.getBirthDate());
+        clientsData.add(poJoFromLeftTable.getCard());
+        clientsData.add(poJoFromLeftTable.getSessionType());
+        clientsData.add(poJoFromLeftTable.document.getType());
+        clientsData.add(poJoFromLeftTable.document.getSeries());
+        clientsData.add(poJoFromLeftTable.document.getNumber());
+        clientsData.add(poJoFromLeftTable.document.getSeriesNumber());
         CustomTableModel customTableModel = new CustomTableModel("fields");
         customTableModel.updateTable(clientsData);
         table.setModel(customTableModel);

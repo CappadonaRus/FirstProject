@@ -3,24 +3,21 @@ package com.JsonParserProject.firstProject;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        JackSonReadToRightFile jackSonReadToRightFIle = new JackSonReadToRightFile();
-        Thread childThread = new Thread(jackSonReadToRightFIle);
+        LeftJPanelJackSonReadFile leftJPanelJackSonReadFIle = new LeftJPanelJackSonReadFile();
+        Thread childThread = new Thread(leftJPanelJackSonReadFIle);
         childThread.start();
 
-        CreateClientsDataForRightTable createClientsDataForRightTable = new CreateClientsDataForRightTable();
-        Thread secondChildThread2 = new Thread(createClientsDataForRightTable);
+        ClientsDatForRightJPanel clientsDatForRightJPanel = new ClientsDatForRightJPanel();
+        Thread secondChildThread2 = new Thread(clientsDatForRightJPanel);
         secondChildThread2.start();
         secondChildThread2.join();
 
-        CreateClientsDataForLow createClientsDataForLow = new CreateClientsDataForLow();
-        Thread fourthChildThread = new Thread(createClientsDataForLow);
+        ClientsDataForCenterJPanel clientsDataForCenterJPanel = new ClientsDataForCenterJPanel();
+        Thread fourthChildThread = new Thread(clientsDataForCenterJPanel);
         fourthChildThread.start();
         fourthChildThread.join();
 
-        CreateBothTables createBothTables = new CreateBothTables();
-        createBothTables.createFrame();
-
-
+        new CreateBothTables();
 
 
     }

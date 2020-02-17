@@ -15,10 +15,10 @@ public interface SplitPaneCreatable {
     default JSplitPane createSplitPane(JTable table) {
         JScrollPane tableScroll = new JScrollPane(table);
 
-        JList rowHeader = new JList(init());
+        JList rowHeader = new JList(listModelCreate());
         rowHeader.setFixedCellWidth(100);
         rowHeader.setFixedCellHeight(table.getRowHeight());
-        rowHeader.setCellRenderer(new RowHeaderRenderer(table));
+        rowHeader.setCellRenderer(new RowHeaderForAllTables(table));
 
         table.setAutoCreateRowSorter(true);
         table.getTableHeader().setPreferredSize(new Dimension(0, 0));
@@ -39,6 +39,9 @@ public interface SplitPaneCreatable {
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                InsertedFinalDetailsFromAll insertedFinalDetailsFromAll = new InsertedFinalDetailsFromAll();
+                insertedFinalDetailsFromAll.saveAllObjects(RightTable.giveObject, LeftTable.giveObject, CenterJPanel.giveObject);
+
             }
         });
         lowPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 3, 3));
@@ -46,7 +49,7 @@ public interface SplitPaneCreatable {
         return lowPanel;
     }
 
-    default ListModel init() {
+    default ListModel listModelCreate() {
 
         return new AbstractListModel() {
             Object headers[] = createColumnsNames().toArray();

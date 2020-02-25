@@ -1,5 +1,7 @@
 package com.JsonParserProject.firstProject.Core;
 
+import com.JsonParserProject.firstProject.Panels.RightPanelTextArea;
+
 public class InsertedFinalDetailsFromAll {
 
  private String dropValueFromLeftPanel;
@@ -40,10 +42,15 @@ public class InsertedFinalDetailsFromAll {
     }
 
     public void saveAllObjects(String leftPanelValue, String rightPanelValue, String centralPanelValue, String buttonChooseValue) {
+        RightPanelTextArea rightPanelTextArea = new RightPanelTextArea();
+
         setDropValueFromLeftPanel(leftPanelValue);
         setDropValueFromRightPanel(rightPanelValue);
         setDropValueFromCentralPanel(centralPanelValue);
         setValueFromRadioButton(buttonChooseValue);
+        String detailsForTextArea = leftPanelValue + " " + rightPanelValue + " " + centralPanelValue + " " + buttonChooseValue;
+       rightPanelTextArea.setTextArea(detailsForTextArea);
+
     }
 
 }

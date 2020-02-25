@@ -1,6 +1,9 @@
 package com.JsonParserProject.firstProject.Panels;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class CustomTableModel extends AbstractTableModel {
@@ -8,9 +11,9 @@ public class CustomTableModel extends AbstractTableModel {
     private ArrayList<String> rowsData = new ArrayList<String>();
 
 
-
     public CustomTableModel(String colName) {
         columnNames.add(colName);
+
     }
 
     public int getRowCount() {

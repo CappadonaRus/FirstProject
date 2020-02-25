@@ -3,6 +3,7 @@ package com.JsonParserProject.firstProject.Panels;
 import com.JsonParserProject.firstProject.Panels.PoJo.PoJoFromRightTable;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class RightTable extends JTable implements SplitPaneCreatable {
@@ -13,7 +14,9 @@ public class RightTable extends JTable implements SplitPaneCreatable {
     public JTable createJTable() {
         CustomTableModel customTableModel = new CustomTableModel("fields");
         table = new JTable(customTableModel);
+        table.setSize(new Dimension(200, 200));
         table.setName("RightTable");
+
         return table;
     }
 

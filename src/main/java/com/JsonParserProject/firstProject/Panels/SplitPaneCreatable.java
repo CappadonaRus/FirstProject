@@ -14,7 +14,8 @@ public interface SplitPaneCreatable {
 
     ArrayList<Object> createColumnsNames();
 
-    default JSplitPane createSplitPane(JTable table) {
+    default JScrollPane createSplitPane(JTable table) {
+
         JScrollPane tableScroll = new JScrollPane(table);
 
         JList rowHeader = new JList(listModelCreate());
@@ -32,28 +33,10 @@ public interface SplitPaneCreatable {
 
             }
         });
-        return new JSplitPane(JSplitPane.VERTICAL_SPLIT, tableScroll, new JScrollPane(createLowPanel()));
+
+        return tableScroll;
     }
 
-    default JPanel createLowPanel() {
-        JPanel lowPanel = new JPanel();
-        JButton buttonStart = new JButton("Start");
-        buttonStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                RightJPanel rightJPanel = new RightJPanel();
-                LeftJPanel leftJPanel = new LeftJPanel();
-                CenterJPanel centerJPanel = new CenterJPanel();
-                InsertedFinalDetailsFromAll insertedFinalDetailsFromAll = new InsertedFinalDetailsFromAll();
-                insertedFinalDetailsFromAll.saveAllObjects(leftJPanel.getLeftPanelValue(), rightJPanel.getRightPanelValue(),
-                                                            centerJPanel.getCentralPanelValue(),rightJPanel.getButtonChooseValue() );
-
-            }
-        });
-        lowPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 3, 3));
-        lowPanel.add(buttonStart, BorderLayout.PAGE_END);
-        return lowPanel;
-    }
 
     default ListModel listModelCreate() {
 
@@ -86,3 +69,25 @@ public interface SplitPaneCreatable {
 
              */
 
+           /*
+    default JPanel createLowPanel() {
+        JPanel lowPanel = new JPanel();
+        JButton buttonStart = new JButton("Run");
+        buttonStart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                RightJPanel rightJPanel = new RightJPanel();
+                LeftJPanel leftJPanel = new LeftJPanel();
+                CenterJPanel centerJPanel = new CenterJPanel();
+                InsertedFinalDetailsFromAll insertedFinalDetailsFromAll = new InsertedFinalDetailsFromAll();
+                insertedFinalDetailsFromAll.saveAllObjects(leftJPanel.getLeftPanelValue(), rightJPanel.getRightPanelValue(),
+                                                            centerJPanel.getCentralPanelValue(),rightJPanel.getButtonChooseValue() );
+
+            }
+        });
+        lowPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 3, 3));
+        lowPanel.add(buttonStart, BorderLayout.AFTER_LAST_LINE);
+        return lowPanel;
+    }
+
+ */

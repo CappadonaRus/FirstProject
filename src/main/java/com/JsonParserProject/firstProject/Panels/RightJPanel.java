@@ -1,11 +1,13 @@
 package com.JsonParserProject.firstProject.Panels;
 
+import com.JsonParserProject.firstProject.Core.InsertedFinalDetailsFromAll;
 import com.JsonParserProject.firstProject.Core.JsonToMapForAll;
 import com.JsonParserProject.firstProject.Panels.PoJo.PoJoFromRightTable;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +20,8 @@ public class RightJPanel extends JTable implements JPanelCreatable, ActionListen
     static Map<String, Object> mapForClientsData = new HashMap<>();
     private static String rightPanelValue;
     private static String buttonChooseValue;
+    JPanel rightUpperPanel = new JPanel();
+
 
     public String getButtonChooseValue() {
         return buttonChooseValue;
@@ -38,12 +42,17 @@ public class RightJPanel extends JTable implements JPanelCreatable, ActionListen
     @Override
     public JPanel createUpperPane() {
         RightTable rightTable = new RightTable();
-        JPanel RightUpperPanel = new JPanel(new BorderLayout(5, 5));
+        RightPanelTextArea rightPanelTextArea = new RightPanelTextArea();
         rightTable.setName("RightPanel");
-        RightUpperPanel.add(CreateUpperComboPanel(), BorderLayout.NORTH);
-        RightUpperPanel.add(rightTable.createSplitPane(rightTable.createJTable()), BorderLayout.CENTER);
-        RightUpperPanel.add(createButtonsGroup(), BorderLayout.EAST);
-        return RightUpperPanel;
+        rightUpperPanel.setLayout(new BorderLayout(10,10));
+        rightUpperPanel.setPreferredSize(new Dimension(600, 600));
+        rightUpperPanel.add(createUpperComboPanel(), BorderLayout.NORTH);
+        rightUpperPanel.add(rightTable.createSplitPane(rightTable.createJTable()), BorderLayout.CENTER);
+        rightUpperPanel.add(createButtonsGroup(), BorderLayout.EAST);
+        rightUpperPanel.add(rightPanelTextArea.createTextPanel(), BorderLayout.SOUTH);
+
+
+        return rightUpperPanel;
     }
 
     @Override
@@ -51,26 +60,18 @@ public class RightJPanel extends JTable implements JPanelCreatable, ActionListen
         JPanel panel = new JPanel();
         panel.setName("RightTableComboPanel");
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setPreferredSize(new Dimension(150, 50));
         panel.add(createDroppingButtonsPanel());
 
         return panel;
     }
 
-    public JPanel CreateUpperComboPanel() {
-        JPanel panel = new JPanel();
-        panel.setName("RightComboPanel");
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.add(createDroppingButtonsPanel());
-        return panel;
-    }
 
     @Override
     public JPanel createDroppingButtonsPanel() {
         JPanel droppingPanel = new JPanel();
         droppingPanel.setName("RightDroppingPanel");
-        droppingPanel.setBorder(new TitledBorder("Border"));
         droppingPanel.add(createComboTableForRight());
-        droppingPanel.add(createAddNewButton());
         return droppingPanel;
     }
 
@@ -104,28 +105,38 @@ public class RightJPanel extends JTable implements JPanelCreatable, ActionListen
 
     public JPanel createButtonsGroup() {
         ButtonGroup buttonsGroupPanel = new ButtonGroup();
-        JRadioButton radioButton1 = new JRadioButton("first button", false);
+        JRadioButton radioButton1 = new JRadioButton("first button", true);
         buttonsGroupPanel.add(radioButton1);
         JRadioButton radioButton2 = new JRadioButton("Second button", false);
         buttonsGroupPanel.add(radioButton2);
         JRadioButton radioButton3 = new JRadioButton("Third button", false);
         buttonsGroupPanel.add(radioButton3);
-
+        JRadioButton radioButton4 = new JRadioButton("Four button", false);
+        buttonsGroupPanel.add(radioButton4);
+        JRadioButton radioButton5 = new JRadioButton("Five button", false);
+        buttonsGroupPanel.add(radioButton5);
+        setButtonChooseValue(radioButton1.getText());
         ActionListener buttonsActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
-                setButtonChooseValue(abstractButton.getText());
+                {
+
+                    AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
+                    setButtonChooseValue(abstractButton.getText());
+                }
             }
         };
         radioButton1.addActionListener(buttonsActionListener);
         radioButton2.addActionListener(buttonsActionListener);
         radioButton3.addActionListener(buttonsActionListener);
+        radioButton4.addActionListener(buttonsActionListener);
+        radioButton5.addActionListener(buttonsActionListener);
 
-
-        JPanel buttonsGroup = new JPanel(new GridLayout(1, 3));
+        JPanel buttonsGroup = new JPanel();
         buttonsGroup.add(radioButton1);
         buttonsGroup.add(radioButton2);
         buttonsGroup.add(radioButton3);
+        buttonsGroup.add(radioButton4);
+        buttonsGroup.add(radioButton5);
         buttonsGroup.setLayout(new BoxLayout(buttonsGroup, BoxLayout.Y_AXIS));
 
 

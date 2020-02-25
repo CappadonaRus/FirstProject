@@ -16,7 +16,7 @@ public class LeftTable extends JTable implements SplitPaneCreatable {
     public JTable createJTable() {
         CustomTableModel customTableModel = new CustomTableModel("fields");
         table = new JTable(customTableModel);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setSize(new Dimension(200, 200));
         table.setName("LeftTable");
         return table;
     }
@@ -60,9 +60,4 @@ public class LeftTable extends JTable implements SplitPaneCreatable {
         table.setModel(customTableModel);
     }
 
-    public JPanel createLowPanel() {
-        JPanel lowPanel = new JPanel();
-        lowPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 3, 3));
-        return lowPanel;
-    }
 }

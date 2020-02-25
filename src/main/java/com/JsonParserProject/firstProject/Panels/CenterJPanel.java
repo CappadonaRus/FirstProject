@@ -20,8 +20,8 @@ import java.util.Map;
 public class CenterJPanel extends JPanel implements JPanelCreatable {
     static private ArrayList<String> clientsNamesForTable = new ArrayList<>();
     static private JsonToMapForAll ClientsPoJoForLower;
-    JLabel jLabel = new JLabel("choose some photo", JLabel.CENTER);
-    JPanel upperPanel = new JPanel(new BorderLayout(5, 5));
+    final static JLabel jLabel = new JLabel( "photo", JLabel.CENTER);
+    final JPanel upperPanel = new JPanel(new BorderLayout(5, 5));
     private static String centralPanelValue;
 
     public String getCentralPanelValue() {
@@ -44,16 +44,18 @@ public class CenterJPanel extends JPanel implements JPanelCreatable {
     }
 
     public void setImage(BufferedImage img) {
-        Image tmp = img.getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), Image.SCALE_SMOOTH);
-        img = new BufferedImage(jLabel.getWidth(), jLabel.getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+        Image tmp = img.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+        img = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g2d = img.createGraphics();
+
         g2d.drawImage(tmp, 0, 0, null);
         g2d.dispose();
 
         ImageIcon icon = new ImageIcon(img);
+        jLabel.setText(null);
         jLabel.setIcon(icon);
-
 
     }
 
@@ -70,14 +72,15 @@ public class CenterJPanel extends JPanel implements JPanelCreatable {
         JPanel panel = new JPanel();
         panel.setName("LowTableComboPanel");
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setPreferredSize(new Dimension(150, 50));
         panel.add(createDroppingButtonsPanel());
-
         return panel;
     }
 
     public JLabel JLabelProp() {
-        jLabel.setBorder(new TitledBorder("Border"));
         jLabel.setName("LowPanelJLabel");
+        jLabel.setMinimumSize(new Dimension(200, 200));
+        jLabel.setPreferredSize(new Dimension(200, 200));
         return jLabel;
     }
 
@@ -86,7 +89,6 @@ public class CenterJPanel extends JPanel implements JPanelCreatable {
     public JPanel createDroppingButtonsPanel() {
         JPanel jpanel = new JPanel();
         jpanel.setName("LowDroppingPanel");
-        jpanel.setBorder(new TitledBorder("Border"));
         jpanel.add(createComboTable());
         jpanel.add(createAddNewButton());
         return jpanel;

@@ -30,11 +30,15 @@ public class LeftJPanel extends JTable implements JPanelCreatable {
 
     @Override
     public JPanel createUpperPane() {
+        CenterJPanel centerJPanel = new CenterJPanel();
         LeftTable leftTable = new LeftTable();
-        JPanel upperPanel = new JPanel(new BorderLayout(5, 5));
+        JPanel upperPanel = new JPanel(new BorderLayout(4, 4));
         leftTable.setName("LeftJPanel");
+        upperPanel.setPreferredSize(new Dimension(600, 600));
         upperPanel.add(createUpperComboPanel(), BorderLayout.NORTH);
-        upperPanel.add(leftTable.createSplitPane(leftTable.createJTable()), BorderLayout.CENTER);
+        upperPanel.add(leftTable.createSplitPane(leftTable.createJTable()), BorderLayout.EAST);
+        upperPanel.add(centerJPanel.createUpperPane(), BorderLayout.SOUTH);
+
 
         return upperPanel;
     }
@@ -44,7 +48,9 @@ public class LeftJPanel extends JTable implements JPanelCreatable {
         JPanel panel = new JPanel();
         panel.setName("LeftTableUpperPanel");
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setPreferredSize(new Dimension(150, 50));
         panel.add(createDroppingButtonsPanel());
+
 
         return panel;
     }
@@ -52,9 +58,7 @@ public class LeftJPanel extends JTable implements JPanelCreatable {
     public JPanel createDroppingButtonsPanel() {
         JPanel droppingPanel = new JPanel();
         droppingPanel.setName("LeftDroppingPanel");
-        droppingPanel.setBorder(new TitledBorder("Border"));
         droppingPanel.add(createComboTableForLeft());
-        droppingPanel.add(createAddNewButton());
 
         return droppingPanel;
     }
@@ -74,6 +78,7 @@ public class LeftJPanel extends JTable implements JPanelCreatable {
         });
         return comboButton;
     }
+
 
 
     public void convertMapToData(String value) {
